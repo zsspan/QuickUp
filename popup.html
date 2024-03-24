@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickUp</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/basic.css" />
+    <link rel="stylesheet" href="styles/icons.css"/>
+    <link rel="stylesheet" href="styles/side-panel.css"/>
+    <link rel ="stylesheet" href ="styles/bootstrap-elements.css">
+    <link rel ="stylesheet" href ="styles/js.css">
+  </head>
+  <body>
+    <div class="notepad">
+      <div class="sidebar">
+        <div class="title">
+          <img class="logo" src="public/logo-quickup.png" />
+          <button type="button" class="new-note">+</button>
+        </div>
+        <div class="note-list">
+        </div>
+        <div class="bottom-bar">
+          <div class="search-container">
+            <input type="search" class="form-control" placeholder="Search notes..." aria-label="Search" aria-describedby="search-addon">
+            <button><img class="glass" src="public/glass.png"></button>
+          </div>
+          
+          
+        </div>
+        
+      </div>
+
+      <div class="content">
+        <div class="header">
+          <input class="title-input" type="text" id = "doctitle" placeholder="Untitled note..."></input>
+          <div class="spacer"></div>
+          <div class="buttons"> <!--upper control options-->
+            
+            <button class="top-toolbar-btn" id = "delete">
+              <img class = "top-icon" src ="public/Icons/delete.png" alt = "delete">
+            </button>
+            <div class="top-toolbar-btn" id="theme">
+              <img class="top-icon" src="public/Icons/theme.png" alt="theme">
+              <div class="theme-dropdown">
+                  <div class="theme-list">
+                      <div id="theme1">
+                          <button>Ocean's Breeze</button>
+                      </div>
+                      <div id="theme2">
+                          <button>Midnight Aura</button>
+                      </div>
+                      <div id="theme3">
+                          <button>Blissful Enamour</button>
+                      </div>
+                      <div id="theme4">
+                          <button>Gated Tundra</button>
+                      </div>
+                      <div id="theme5">
+                        <button>Historic Text</button>
+                    </div>
+                    <div id="theme6">
+                      <button>Many Festivities</button>
+                  </div>
+                  <div id="theme7">
+                    <button>Tectonic Shift</button>
+                </div>
+                <div id="theme8">
+                  <button>Natural Dawn</button>
+              </div>
+              <div id="theme9">
+                <button>Axial Nebula</button>
+            </div>
+
+                  </div>
+              </div>
+          </div>
+          
+            <button class="top-toolbar-btn" id = "download">
+              <img class = "top-icon" src ="public/Icons/download.png" alt = "download">
+            </button>
+            <button class="top-toolbar-btn" id= "info">
+              <img class = "top-icon" src ="public/Icons/info.png" alt = "info">
+            </button>
+            </div>
+      </div>
+      <div class = "toolbar"> <!--options for text, bold, underline, etc-->
+        <button class="toolbar-btn" id="bold-btn">
+          <img class = "icon" src = "public/Icons/bold.png" alt = "bold">
+        </button>
+        <button class="toolbar-btn" id="italic-btn">
+          <img class = "icon" src = "public/Icons/italics.png" alt = "italics">
+        </button>
+        <button class="toolbar-btn" id="underline-btn">
+          <img class = "icon" src = "public/Icons/underline.png" alt = "underline">
+        </button>
+        <button class="toolbar-btn" id="highlight-btn">
+          <img class = "icon" src = "public/Icons/highlight.png" alt = "highlight">
+        </button>
+        <button class="toolbar-btn" id="erase-btn">
+          <img class = "icon" src = "public/Icons/erase.png" alt = "erase">
+        </button>
+        <button class="toolbar-btn" id="left-align-btn">
+          <img class = "icon" src = "public/Icons/left-align.png" alt = "left">
+        </button>
+        <button class="toolbar-btn" id="center-align-btn">
+          <img class = "icon" src = "public/Icons/center-align.png" alt = "center">
+        </button>
+        <button class="toolbar-btn" id="right-align-btn">
+          <img class = "icon" src = "public/Icons/right-align.png" alt = "right">
+        </button>
+        <button class="toolbar-btn" id="justify-align-btn">
+          <img class = "icon" src = "public/Icons/justify-align.png" alt = "justify">
+        </button>
+        <button class="toolbar-btn" id="list-btn">
+          <img class = "icon" src = "public/Icons/bullets.png" alt = "bullets">
+        </button>
+      </div>
+      <div class="newtext" contenteditable="true" placeholder="New note..."></div>
+    </div>
+    <script type="module" src = "scripts/popup.js"></script>
+    <script type="module" src="scripts/drag.js"></script>
+    <script type="module" src="scripts/buttons.js"></script>
+    <script type="module" src="scripts/extras.js"></script>
+    <script type ="module" src="scripts/globals.js"></script>
+  </body>
+</html>
