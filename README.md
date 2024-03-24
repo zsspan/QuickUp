@@ -9,7 +9,7 @@ The program is also currently pending approval on the Chrome Web Store, allowing
 
 To use QuickUp, follow these steps to install the extension on your Chrome browser
 
-Clone the Repository: Clone the QuickUp repository to your local machine using Git. Open a terminal and run the following command:
+Clone the Repository: Clone the QuickUp repository to your computer using Git. Open any terminal and run the following command:
 
 ```
 git clone <repository_url>
@@ -17,11 +17,11 @@ git clone <repository_url>
 
 Alternatively, you can download the ZIP file from the GitHub repository's webpage and extract it locally.
 
-Enable Developer Mode in Chrome: Open the Chrome browser and navigate to the Extensions page by clicking on the three-dot menu icon in the top-right corner, then selecting "More tools" > "Extensions."
+Enable Developer Mode in Chrome: Open the Chrome browser and navigate to the Extensions page by clicking on the three-dot menu icon in the top-right corner, then selecting "More tools" -> "Extensions."
 
 Load the Extension: Enable Developer mode by toggling the switch in the upper-right corner of the Extensions page. Then, click on the "Load unpacked" button and select the folder where you cloned or extracted the QuickUp repository.
 
-Verify Installation: Once installed, you should see the QuickUp icon in the Chrome toolbar, indicating that the extension has been successfully added to your browser.
+Verify Installation: Once installed, you should see the QuickUp icon in the Chrome toolbar, indicating that the extension has been successfully added to your browser. Note in the future the extension will be available on the Chrome Web Store and downloading it will be as simple as pressing a link!
 
 ## About
 
