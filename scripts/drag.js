@@ -11,7 +11,7 @@ export function dragOver(event) {
     event.preventDefault();
 }
 
-export function drop(event) {
+export function drop(event, allNotes) {
     event.preventDefault();
     event.preventDefault();
     const dropTarget = event.target.closest('.note');
@@ -27,5 +27,19 @@ export function drop(event) {
             dropTarget.parentNode.insertBefore(draggedItem, dropTarget);
         }
     }
+
+    const noteList = Array.from(document.querySelectorAll('.note')); // Convert NodeList to array
+    
+    //relocates dragged note to right spot in allnotes array
+    const index = noteList.indexOf(draggedItem); // Find index of dragged item
+    const id = draggedItem.id;
+    
+    const draggedNote = allNotes.find(note => note.id === Number(id));
+    
+    const prevIndex = allNotes.indexOf(draggedNote);
+    allNotes.splice(prevIndex, 1);
+    allNotes.splice(index, 0, draggedNote);
+    
     draggedItem = null;
+    return allNotes;
 }

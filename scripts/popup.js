@@ -324,8 +324,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const noteList = document.querySelector('.note-list');
     noteList.addEventListener('dragstart', dragStart);
     noteList.addEventListener('dragover', dragOver);
-    noteList.addEventListener('drop', drop);
-
+    noteList.addEventListener('drop', event => {
+        // Call the drop function passing the event and the allNotes array
+        allNotes = drop(event, allNotes);
+        // console.log(allNotes)
+        saveNotes();
+    });
     //Imported from buttons.js, handles many events
     handleAllClicks();
 });
