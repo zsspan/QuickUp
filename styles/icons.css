@@ -2,7 +2,6 @@
     opacity: 0.5;
 }
 
-
 .toolbar-btn:focus, .top-toolbar-btn:focus{
     outline: none;
 }
@@ -47,6 +46,7 @@
     width: 18px;
     height: auto;
 }
+
 #theme:hover{
     cursor: auto;
 }
@@ -60,7 +60,6 @@
     position: relative;
     display: inline-block;
 }
-
 
 .theme-dropdown {
     display: none;
@@ -81,10 +80,12 @@
     display: flex;
     flex-direction: column;
 }
+
 .theme-list div{
     height: 35px;
     display: flex;
 }
+
 .theme-list div button{
     flex: 1;
     background-color: transparent;
@@ -101,14 +102,13 @@
     opacity: 0.7;
 }
 
-
+/*colours for each theme*/
 #theme1{
     background-color: #19A7CE;
 }
 #theme2{
     background-color: #393053;
 }
-
 #theme3{
     background-color: #F7418F;
 }

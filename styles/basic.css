@@ -40,7 +40,6 @@ textarea, input{
     
 }
 
-
 .title{ /*logo*/
     background-color: var(--color);
     align-items: center;
@@ -83,7 +82,6 @@ textarea, input{
     opacity: 0.8;
 }
 
-
 /*top bar*/
 .header{
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
@@ -116,7 +114,6 @@ textarea, input{
     padding-right: 10px;
     flex: 1;
 }
-
 
 .newtext {
     flex: 1;

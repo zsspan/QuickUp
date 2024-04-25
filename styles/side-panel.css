@@ -1,4 +1,5 @@
-.sidebar{ /*entire side panel*/
+/*entire side panel*/
+.sidebar{ 
     background-color: var(--color);
     display: flex;
     flex-direction: column;
