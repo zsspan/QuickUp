@@ -12,7 +12,7 @@ To use QuickUp, follow these steps to install the extension on your Chrome brows
 Clone the Repository: Clone the QuickUp repository to your computer using Git. Open any terminal and run the following command:
 
 ```
-git clone <repository_url>
+git clone https://github.com/zsspan/QuickUp
 ```
 
 Alternatively, you can download the ZIP file from the GitHub repository's webpage and extract it locally.
