@@ -21,7 +21,7 @@ export const themes = {
     theme1: {
         theme_name: 'Ocean\'s Breeze',
         primary: '#19A7CE',
-        secondary: '#AFD3E2',
+        secondary: '#8ac3db',
         content: '#FFFFFF',
         alternate:'#0a2f3e',
         notes: '#c9d2d3'
