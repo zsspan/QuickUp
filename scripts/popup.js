@@ -3,7 +3,7 @@ import { handleAllClicks } from "./buttons.js";
 import { getNoteIDFromButton, handleSearch, downloadAsTXT } from "./extras.js";
 import { 
     titleInput, editableDiv, placeholderDiv, deleteBtn, download, searchInput, newNote, themes,
-    logo, header, toolbar, sidebar, searchContainer, dropdown
+    logo, header, toolbar, sidebar, searchContainer, dropdown, spellcheck
 } from './globals.js';
 
 //Class that holds each note
@@ -81,6 +81,15 @@ function autoSave() {
 download.addEventListener('click', downloadAsTXT);
 newNote.addEventListener('click', createNote);
 titleInput.addEventListener('input', changeTitle);
+spellcheck.addEventListener('click', () =>{
+    let check = editableDiv.getAttribute('spellcheck');
+    console.log(check);
+    if (check){
+        editableDiv.setAttribute('spellcheck', 'false');
+    } else {
+        editableDiv.setAttribute('spellcheck', 'true');
+    }
+})
 
 //Handles note deletion
 deleteBtn.addEventListener('click', function(){

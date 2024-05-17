@@ -1,28 +1,28 @@
-.right-border{
+.right-border {
     border-right: none;
 }
 
-.active{
-    font-weight:900;
+.active {
+    font-weight: 900;
     text-decoration: wavy;
     font-family: 'Arial Narrow Bold', sans-serif;
 }
 
-.normal{
+.normal {
     color: auto;
     font-weight: initial;
 }
 
-.none{
+.none {
     display: none;
 }
 
-.hidden-toolbar{
+.hidden-toolbar {
     justify-content: right;
     padding-right: 10px;
 }
 
-.placeholder{
+.placeholder {
     flex: 1;
     text-align: center;
     padding-top: 15%;
@@ -30,20 +30,20 @@
     background-color: var(--bg-color);
 }
 
-.placeholder p{
+.placeholder p {
     margin: 0;
 }
 
-.intro{
+.intro {
     padding-bottom: 20px;
     text-decoration: underline;
 }
 
-.app-name{
+.app-name {
     color: var(--color);
     font-weight: bolder;
 }
 
-.italics{
+.italics {
     font-style: italic;
 }

@@ -5,6 +5,7 @@ export const editableDiv = document.querySelector('.newtext');
 export const placeholderDiv = document.createElement('div');
 export const deleteBtn = document.getElementById('delete');
 export const download = document.getElementById('download');
+export const spellcheck = document.getElementById('spellcheck-btn');
 
 export const searchInput = document.querySelector('.form-control');
 export const newNote = document.querySelector('.new-note');
