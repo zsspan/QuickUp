@@ -13,47 +13,47 @@ export function handleAllClicks() {
   const erase = document.getElementById("erase-btn");
   const list = document.getElementById("list-btn");
 
-  left_align.addEventListener("click", function () {
+  left_align.addEventListener("click", () => {
     setTextAlignment("Left");
   });
 
-  center_align.addEventListener("click", function () {
+  center_align.addEventListener("click", () => {
     setTextAlignment("Center");
   });
 
-  right_align.addEventListener("click", function () {
+  right_align.addEventListener("click", () => {
     setTextAlignment("Right");
   });
 
-  justify_align.addEventListener("click", function () {
+  justify_align.addEventListener("click", () => {
     setTextAlignment("Full");
   });
 
-  bold.addEventListener("click", function () {
+  bold.addEventListener("click", () => {
     document.execCommand("bold");
   });
 
-  underline.addEventListener("click", function () {
+  underline.addEventListener("click", () => {
     document.execCommand("underline");
   });
 
-  italics.addEventListener("click", function () {
+  italics.addEventListener("click", () => {
     document.execCommand("italic");
   });
 
-  highlight.addEventListener("click", function () {
+  highlight.addEventListener("click", () => {
     document.execCommand("hiliteColor", false, currTheme.secondary);
   });
 
-  erase.addEventListener("click", function () {
+  erase.addEventListener("click", () => {
     document.execCommand("hiliteColor", false, "transparent");
   });
 
-  list.addEventListener("click", function () {
+  list.addEventListener("click", () => {
     document.execCommand("insertUnorderedList", false, null);
   });
 
-  info.addEventListener("click", function () {
+  info.addEventListener("click", () => {
     window.open("QuickUp_ Version 1.pdf", "_blank");
   });
 }
