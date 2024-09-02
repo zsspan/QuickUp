@@ -106,26 +106,30 @@ spellcheck.addEventListener("click", () => {
 //Handles note deletion
 deleteBtn.addEventListener("click", () => {
   if (activeNote) {
-    let wantRemoved = document.getElementById(activeNote.id);
-    if (wantRemoved && wantRemoved.parentNode) {
-      wantRemoved.parentNode.removeChild(wantRemoved);
-      let index = allNotes.findIndex(
-        (note) => note.id.toString() === activeNote.id.toString()
-      );
-      if (index !== -1) {
-        allNotes.splice(index, 1);
+    const confirmation = confirm("Are you sure you want to delete '" + title + "' ?");
+    if (confirmation) {
+      let wantRemoved = document.getElementById(activeNote.id);
+      if (wantRemoved && wantRemoved.parentNode) {
+        wantRemoved.parentNode.removeChild(wantRemoved);
+        let index = allNotes.findIndex(
+          (note) => note.id.toString() === activeNote.id.toString()
+        );
+        if (index !== -1) {
+          allNotes.splice(index, 1);
+        }
+        if (allNotes.length > 0) {
+          activeNote = allNotes[allNotes.length - 1];
+          let button = document.getElementById(activeNote.id).firstChild;
+          updateButtonStyles(button);
+        } else {
+          activeNote = null;
+        }
       }
-      if (allNotes.length > 0) {
-        activeNote = allNotes[allNotes.length - 1];
-        let button = document.getElementById(activeNote.id).firstChild;
-        updateButtonStyles(button);
-      } else {
-        activeNote = null;
-      }
+      autoSave();
     }
   }
-  autoSave();
 });
+
 
 //Updates editableDiv content
 editableDiv.addEventListener("input", () => {

@@ -11,6 +11,5 @@
       "default_icon": "/public/ext-logo.png"
     },
     "permissions": [
-        "storage"
     ]
   }
