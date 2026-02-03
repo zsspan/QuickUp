@@ -8,7 +8,7 @@
     "manifest_version": 3,
     "action": {
       "default_popup": "popup.html",
-      "default_icon": "/public/debug-logo.png"
+      "default_icon": "/public/ext-logo.png"
     },
     "permissions": [
     ]
