@@ -69,3 +69,31 @@ export function downloadAsTXT() {
   link.click();
   URL.revokeObjectURL(url);
 }
+
+// download note as PDF using jsPDF
+export function downloadAsPDF() {
+  console.log("DSDS");
+  // ensure jsPDF is available
+  if (
+    typeof window.jspdf === "undefined" &&
+    typeof window.jsPDF === "undefined"
+  ) {
+    alert("jsPDF library is required to download as PDF.");
+    return;
+  }
+  // support both global jsPDF and window.jspdf.jsPDF
+  const jsPDF = window.jsPDF || (window.jspdf && window.jspdf.jsPDF);
+  if (!jsPDF) {
+    alert("jsPDF library is not loaded.");
+    return;
+  }
+  const doc = new jsPDF();
+  const text = editableDiv.innerText || "";
+  const title = activeNote.title !== "" ? activeNote.title : "untitled";
+  doc.setFontSize(16);
+  doc.text(title, 10, 20);
+  doc.setFontSize(12);
+  const lines = doc.splitTextToSize(text, 180);
+  doc.text(lines, 10, 35);
+  doc.save("QuickUp - " + title + ".pdf");
+}

@@ -4,6 +4,7 @@ export const editableDiv = document.querySelector(".newtext");
 
 export const placeholderDiv = document.createElement("div");
 export const deleteBtn = document.getElementById("delete");
+export const downloadPDFBtn = document.getElementById("download-pdf");
 export const download = document.getElementById("download");
 export const spellcheck = document.getElementById("spellcheck-btn");
 

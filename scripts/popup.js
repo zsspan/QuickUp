@@ -1,6 +1,11 @@
 import { dragOver, dragStart, drop } from "./drag.js";
 import { handleAllClicks } from "./buttons.js";
-import { getNoteIDFromButton, handleSearch, downloadAsTXT } from "./extras.js";
+import {
+  getNoteIDFromButton,
+  handleSearch,
+  downloadAsTXT,
+  downloadAsPDF,
+} from "./extras.js";
 import {
   titleInput,
   editableDiv,
@@ -17,6 +22,7 @@ import {
   searchContainer,
   dropdown,
   spellcheck,
+  downloadPDFBtn,
 } from "./globals.js";
 
 //Class that holds each note
@@ -60,7 +66,7 @@ function loadNotes() {
     parsedNotes.forEach((note) => {
       allNotes.push(new Note(note.id, note.title, note.content));
     });
-    console.log("Loaded Last Save");
+    console.log("QuickUp - Loaded Last Save");
     allNotes.forEach((note) => {
       generateNoteUI(note);
     });
@@ -91,11 +97,15 @@ function autoSave() {
 
 //Event listeners for downloading, changing title, and creating a note
 download.addEventListener("click", downloadAsTXT);
+downloadPDFBtn.addEventListener("click", () => {
+  downloadAsPDF();
+});
+
 newNote.addEventListener("click", createNote);
 titleInput.addEventListener("input", changeTitle);
 spellcheck.addEventListener("click", () => {
   let check = editableDiv.getAttribute("spellcheck");
-  console.log(check);
+  // console.log(check);
   if (check) {
     editableDiv.setAttribute("spellcheck", "false");
   } else {
@@ -106,13 +116,15 @@ spellcheck.addEventListener("click", () => {
 //Handles note deletion
 deleteBtn.addEventListener("click", () => {
   if (activeNote) {
-    const confirmation = confirm("Are you sure you want to delete '" + title + "' ?");
+    const confirmation = confirm(
+      "Are you sure you want to delete '" + title + "' ?",
+    );
     if (confirmation) {
       let wantRemoved = document.getElementById(activeNote.id);
       if (wantRemoved && wantRemoved.parentNode) {
         wantRemoved.parentNode.removeChild(wantRemoved);
         let index = allNotes.findIndex(
-          (note) => note.id.toString() === activeNote.id.toString()
+          (note) => note.id.toString() === activeNote.id.toString(),
         );
         if (index !== -1) {
           allNotes.splice(index, 1);
@@ -129,7 +141,6 @@ deleteBtn.addEventListener("click", () => {
     }
   }
 });
-
 
 //Updates editableDiv content
 editableDiv.addEventListener("input", () => {
@@ -197,7 +208,7 @@ function setActiveNote() {
     let buttonID = getNoteIDFromButton(button);
     button.addEventListener("click", (event) => {
       activeNote = allNotes.find(
-        (note) => note.id.toString() === buttonID.toString()
+        (note) => note.id.toString() === buttonID.toString(),
       );
       //console.log('Active note:' + activeNote.id);
       if (activeNote) {
