@@ -54,7 +54,7 @@ export function handleAllClicks() {
   });
 
   info.addEventListener("click", () => {
-    window.open("QuickUp_ Version 1.pdf", "_blank");
+    window.open("docs/v1.1.pdf", "_blank");
   });
 }
 

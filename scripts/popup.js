@@ -67,7 +67,7 @@ function loadNotes() {
       allNotes.push(new Note(note.id, note.title, note.content));
     });
     console.log("QuickUp - Loaded Last Save");
-    allNotes.forEach((note) => {
+    [...allNotes].reverse().forEach((note) => {
       generateNoteUI(note);
     });
 
@@ -119,7 +119,7 @@ spellcheck.addEventListener("click", () => {
 deleteBtn.addEventListener("click", () => {
   if (activeNote) {
     const confirmation = confirm(
-      "Are you sure you want to delete '" + title + "' ?",
+      "Are you sure you want to delete '" + title + "'?",
     );
     if (confirmation) {
       let wantRemoved = document.getElementById(activeNote.id);
@@ -227,14 +227,29 @@ function setActiveNote() {
   });
 }
 
-//Function that decides which theme is active
-function chooseTheme() {
-  const themeInfo = document.querySelector(".theme-list").children;
-  const themeOptions = Array.from(themeInfo); //creates array of all themes
+// Populate the theme list in the DOM
+function populateThemeList() {
+  const themeList = document.querySelector(".theme-list");
+  themeList.innerHTML = "";
+  Object.keys(themes).forEach((themeKey) => {
+    const theme = themes[themeKey];
+    const themeDiv = document.createElement("div");
+    themeDiv.id = themeKey;
+    // match structure: <div id="themeX"><button>Theme Name</button></div>
+    const btn = document.createElement("button");
+    btn.textContent = theme.theme_name || themeKey;
+    themeDiv.appendChild(btn);
+    themeList.appendChild(themeDiv);
+  });
+}
 
-  themeOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      currTheme = themes[option.id];
+// Attach event listeners for theme selection
+function chooseTheme() {
+  const themeList = document.querySelector(".theme-list");
+  Array.from(themeList.children).forEach((themeDiv) => {
+    themeDiv.addEventListener("click", () => {
+      const themeKey = themeDiv.id;
+      currTheme = themes[themeKey];
       applyTheme();
     });
   });
@@ -355,6 +370,7 @@ function renderEmpty(allNotes) {
 document.addEventListener("DOMContentLoaded", () => {
   loadNotes();
   renderEmpty(allNotes);
+  populateThemeList();
   chooseTheme();
   handleSearch();
 

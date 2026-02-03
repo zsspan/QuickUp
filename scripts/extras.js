@@ -94,5 +94,5 @@ export function downloadAsPDF() {
   doc.setFontSize(12);
   const lines = doc.splitTextToSize(text, 180);
   doc.text(lines, 10, 35);
-  doc.save("QuickUp - " + title + ".pdf");
+  doc.save(title + ".pdf");
 }
