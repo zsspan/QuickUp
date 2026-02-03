@@ -1,6 +1,11 @@
 import { dragOver, dragStart, drop } from "./drag.js";
 import { handleAllClicks } from "./buttons.js";
-import { getNoteIDFromButton, handleSearch, downloadAsTXT } from "./extras.js";
+import {
+  getNoteIDFromButton,
+  handleSearch,
+  downloadAsTXT,
+  downloadAsPDF,
+} from "./extras.js";
 import {
   titleInput,
   editableDiv,
@@ -17,6 +22,7 @@ import {
   searchContainer,
   dropdown,
   spellcheck,
+  downloadPDFBtn,
 } from "./globals.js";
 
 //Class that holds each note
@@ -60,8 +66,8 @@ function loadNotes() {
     parsedNotes.forEach((note) => {
       allNotes.push(new Note(note.id, note.title, note.content));
     });
-    console.log("Loaded Last Save");
-    allNotes.forEach((note) => {
+    console.log("QuickUp - Loaded Last Save");
+    [...allNotes].reverse().forEach((note) => {
       generateNoteUI(note);
     });
 
@@ -73,8 +79,10 @@ function loadNotes() {
   const savedTheme = localStorage.getItem("currentTheme");
   if (savedTheme) {
     currTheme = JSON.parse(savedTheme);
-    applyTheme(); // Apply the saved theme
+  } else {
+    currTheme = themes["theme1"];
   }
+  applyTheme(); // apply the saved theme
 }
 
 //Function for autosave
@@ -91,11 +99,15 @@ function autoSave() {
 
 //Event listeners for downloading, changing title, and creating a note
 download.addEventListener("click", downloadAsTXT);
+downloadPDFBtn.addEventListener("click", () => {
+  downloadAsPDF();
+});
+
 newNote.addEventListener("click", createNote);
 titleInput.addEventListener("input", changeTitle);
 spellcheck.addEventListener("click", () => {
   let check = editableDiv.getAttribute("spellcheck");
-  console.log(check);
+  // console.log(check);
   if (check) {
     editableDiv.setAttribute("spellcheck", "false");
   } else {
@@ -106,13 +118,15 @@ spellcheck.addEventListener("click", () => {
 //Handles note deletion
 deleteBtn.addEventListener("click", () => {
   if (activeNote) {
-    const confirmation = confirm("Are you sure you want to delete '" + title + "' ?");
+    const confirmation = confirm(
+      "Are you sure you want to delete '" + title + "'?",
+    );
     if (confirmation) {
       let wantRemoved = document.getElementById(activeNote.id);
       if (wantRemoved && wantRemoved.parentNode) {
         wantRemoved.parentNode.removeChild(wantRemoved);
         let index = allNotes.findIndex(
-          (note) => note.id.toString() === activeNote.id.toString()
+          (note) => note.id.toString() === activeNote.id.toString(),
         );
         if (index !== -1) {
           allNotes.splice(index, 1);
@@ -129,7 +143,6 @@ deleteBtn.addEventListener("click", () => {
     }
   }
 });
-
 
 //Updates editableDiv content
 editableDiv.addEventListener("input", () => {
@@ -160,7 +173,12 @@ function generateNoteUI(newNote) {
   }
 
   note.appendChild(noteBtn);
-  list.appendChild(note);
+  // Insert at the beginning of the list
+  if (list.firstChild) {
+    list.insertBefore(note, list.firstChild);
+  } else {
+    list.appendChild(note);
+  }
 
   titleInput.value = newNote.title;
   editableDiv.innerHTML = newNote.content;
@@ -181,11 +199,13 @@ function createNote() {
   let noteID = Date.now();
   let newNote = new Note(noteID);
 
-  allNotes.push(newNote);
+  // Add to the beginning of the array
+  allNotes.unshift(newNote);
 
   generateNoteUI(newNote);
   activeNote = newNote;
-  updateButtonStyles(noteButtons[noteButtons.length - 1]); // Update styles for the newly created button
+  // Update styles for the first button (newest note)
+  updateButtonStyles(noteButtons[0]);
 
   //console.log("ACTIVE NOTE:" + activeNote.id);
   autoSave();
@@ -197,7 +217,7 @@ function setActiveNote() {
     let buttonID = getNoteIDFromButton(button);
     button.addEventListener("click", (event) => {
       activeNote = allNotes.find(
-        (note) => note.id.toString() === buttonID.toString()
+        (note) => note.id.toString() === buttonID.toString(),
       );
       //console.log('Active note:' + activeNote.id);
       if (activeNote) {
@@ -207,14 +227,29 @@ function setActiveNote() {
   });
 }
 
-//Function that decides which theme is active
-function chooseTheme() {
-  const themeInfo = document.querySelector(".theme-list").children;
-  const themeOptions = Array.from(themeInfo); //creates array of all themes
+// Populate the theme list in the DOM
+function populateThemeList() {
+  const themeList = document.querySelector(".theme-list");
+  themeList.innerHTML = "";
+  Object.keys(themes).forEach((themeKey) => {
+    const theme = themes[themeKey];
+    const themeDiv = document.createElement("div");
+    themeDiv.id = themeKey;
+    // match structure: <div id="themeX"><button>Theme Name</button></div>
+    const btn = document.createElement("button");
+    btn.textContent = theme.theme_name || themeKey;
+    themeDiv.appendChild(btn);
+    themeList.appendChild(themeDiv);
+  });
+}
 
-  themeOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      currTheme = themes[option.id];
+// Attach event listeners for theme selection
+function chooseTheme() {
+  const themeList = document.querySelector(".theme-list");
+  Array.from(themeList.children).forEach((themeDiv) => {
+    themeDiv.addEventListener("click", () => {
+      const themeKey = themeDiv.id;
+      currTheme = themes[themeKey];
       applyTheme();
     });
   });
@@ -335,6 +370,7 @@ function renderEmpty(allNotes) {
 document.addEventListener("DOMContentLoaded", () => {
   loadNotes();
   renderEmpty(allNotes);
+  populateThemeList();
   chooseTheme();
   handleSearch();
 

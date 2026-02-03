@@ -1,14 +1,14 @@
 {
     "name": "QuickUp",
     "description": "Notepad and Task Manager",
-    "version": "1.0",
+    "version": "1.1",
     "author": "Zohair Syed",
 
 
     "manifest_version": 3,
     "action": {
       "default_popup": "popup.html",
-      "default_icon": "/public/ext-logo.png"
+      "default_icon": "/public/debug-logo.png"
     },
     "permissions": [
     ]

@@ -15,6 +15,8 @@
     <link rel ="stylesheet" href ="styles/js.css">
   </head>
   <body>
+    <!-- jsPDF library for PDF export -->
+  <script src="lib/jspdf.umd.min.js"></script>
     <div class="notepad">
       <div class="sidebar">
         <div class="title">
@@ -41,43 +43,17 @@
               <img class = "top-icon" src ="public/Icons/delete.png" alt = "delete">
             </button>
             <div class="top-toolbar-btn" id="theme">
-              <img class="top-icon" src="public/Icons/theme.png" alt="theme">
-              <div class="theme-dropdown">
-                  <div class="theme-list">
-                      <div id="theme1">
-                          <button>Ocean's Breeze</button>
-                      </div>
-                      <div id="theme2">
-                          <button>Midnight Aura</button>
-                      </div>
-                      <div id="theme3">
-                          <button>Blissful Enamour</button>
-                      </div>
-                      <div id="theme4">
-                          <button>Gated Tundra</button>
-                      </div>
-                      <div id="theme5">
-                        <button>Historic Text</button>
-                    </div>
-                    <div id="theme6">
-                      <button>Many Festivities</button>
-                  </div>
-                  <div id="theme7">
-                    <button>Tectonic Shift</button>
+                <img class="top-icon" src="public/Icons/theme.png" alt="theme">
+                <div class="theme-dropdown">
+                  <div class="theme-list"></div>
                 </div>
-                <div id="theme8">
-                  <button>Natural Dawn</button>
-              </div>
-              <div id="theme9">
-                <button>Axial Nebula</button>
-            </div>
-
-                  </div>
-              </div>
           </div>
           
             <button class="top-toolbar-btn" id = "download">
               <img class = "top-icon" src ="public/Icons/download.png" alt = "download">
+            </button>
+            <button class="top-toolbar-btn" id = "download-pdf">
+              <img class = "top-icon" src ="public/Icons/PDF.svg" alt = "download-PDF">
             </button>
             <button class="top-toolbar-btn" id= "info">
               <img class = "top-icon" src ="public/Icons/info.png" alt = "info">
