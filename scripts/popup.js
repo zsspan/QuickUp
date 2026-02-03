@@ -79,8 +79,10 @@ function loadNotes() {
   const savedTheme = localStorage.getItem("currentTheme");
   if (savedTheme) {
     currTheme = JSON.parse(savedTheme);
-    applyTheme(); // Apply the saved theme
+  } else {
+    currTheme = themes["theme1"];
   }
+  applyTheme(); // apply the saved theme
 }
 
 //Function for autosave
@@ -171,7 +173,12 @@ function generateNoteUI(newNote) {
   }
 
   note.appendChild(noteBtn);
-  list.appendChild(note);
+  // Insert at the beginning of the list
+  if (list.firstChild) {
+    list.insertBefore(note, list.firstChild);
+  } else {
+    list.appendChild(note);
+  }
 
   titleInput.value = newNote.title;
   editableDiv.innerHTML = newNote.content;
@@ -192,11 +199,13 @@ function createNote() {
   let noteID = Date.now();
   let newNote = new Note(noteID);
 
-  allNotes.push(newNote);
+  // Add to the beginning of the array
+  allNotes.unshift(newNote);
 
   generateNoteUI(newNote);
   activeNote = newNote;
-  updateButtonStyles(noteButtons[noteButtons.length - 1]); // Update styles for the newly created button
+  // Update styles for the first button (newest note)
+  updateButtonStyles(noteButtons[0]);
 
   //console.log("ACTIVE NOTE:" + activeNote.id);
   autoSave();

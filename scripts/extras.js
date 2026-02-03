@@ -72,7 +72,6 @@ export function downloadAsTXT() {
 
 // download note as PDF using jsPDF
 export function downloadAsPDF() {
-  console.log("DSDS");
   // ensure jsPDF is available
   if (
     typeof window.jspdf === "undefined" &&
