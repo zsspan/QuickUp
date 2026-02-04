@@ -118,10 +118,31 @@ spellcheck.addEventListener("click", () => {
 //Handles note deletion
 deleteBtn.addEventListener("click", () => {
   if (activeNote) {
-    const confirmation = confirm(
-      "Are you sure you want to delete '" + title + "'?",
-    );
-    if (confirmation) {
+    const modal = document.getElementById("delete-modal");
+    const title = document.getElementById("doctitle").value || "Untitled";
+    const confirmBtn = document.getElementById("modal-confirm");
+    confirmBtn.style.background = currTheme["primary"];
+
+    document.getElementById("modal-note-title").innerText = title;
+    modal.style.display = "flex";
+
+    const closeModal = () => {
+      modal.style.display = "none";
+      window.removeEventListener("keydown", handleKeydown);
+    };
+
+    const handleKeydown = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault(); 
+        confirmBtn.click();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeydown);
+
+    document.getElementById("modal-cancel").onclick = closeModal;
+
+    confirmBtn.onclick = () => {
       let wantRemoved = document.getElementById(activeNote.id);
       if (wantRemoved && wantRemoved.parentNode) {
         wantRemoved.parentNode.removeChild(wantRemoved);
@@ -137,10 +158,19 @@ deleteBtn.addEventListener("click", () => {
           updateButtonStyles(button);
         } else {
           activeNote = null;
+          document.getElementById("doctitle").value = "";
+          document.querySelector(".newtext").innerHTML = "";
         }
       }
       autoSave();
-    }
+      closeModal();
+    };
+
+    modal.onclick = (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
   }
 });
 
@@ -330,6 +360,7 @@ function renderEmpty(allNotes) {
     //change the displays of text features when no notes are present
     titleInput.classList.add("none");
     download.classList.add("none");
+    downloadPDFBtn.classList.add("none");
     deleteBtn.classList.add("none");
 
     dropdown.style.setProperty("--position", "-325%");

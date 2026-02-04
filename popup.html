@@ -97,6 +97,16 @@
       </div>
       <div class="newtext" spellcheck="true" contenteditable="true" placeholder="New note..."></div>
     </div>
+    <div id="delete-modal" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Delete Note</h3>
+    <p>Are you sure you want to delete <span id="modal-note-title"></span>?</p>
+    <div class="modal-buttons">
+      <button id="modal-cancel">Cancel</button>
+      <button id="modal-confirm" class="delete-btn">Delete</button>
+    </div>
+  </div>
+</div>
     <script type="module" src = "scripts/popup.js"></script>
     <script type="module" src="scripts/drag.js"></script>
     <script type="module" src="scripts/buttons.js"></script>
